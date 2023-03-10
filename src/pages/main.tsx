@@ -266,7 +266,7 @@ function Main() {
                 <ul className="links links-right">
                   <li className="list__item entrance">
                     <a className="auth" href="# ">
-                  Вход
+                  Вход по коду
                     </a>
                   </li>
                   <li className="list__item">

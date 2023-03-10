@@ -6,6 +6,6 @@ export const URL_MARKER_DEFAULT =
 export const URL_MARKER_CURRENT =
   './media/pin-active.png';
 
-export const COMPANY_LOCATION: LatLngTuple = [59.968268, 30.317413];
-export const DEFAULT_ZOOM = 10;
+export const COMPANY_LOCATION: LatLngTuple = [61.779883, 34.357146];
+export const DEFAULT_ZOOM = 13;
 

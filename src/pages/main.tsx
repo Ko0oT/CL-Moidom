@@ -357,7 +357,7 @@ function Main() {
           Для организаций
             </a>
             <a className="copyright" href="#" rel="noopener noreferrer">
-          2023 © Инлаб.Про
+          2023 © Сергей Волчков & Евгения Жилина
             </a>
           </div>
         </footer>

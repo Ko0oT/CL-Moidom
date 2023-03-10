@@ -1,7 +1,7 @@
 function Player() {
   return (
     <>
-      <div className="balloon-player">
+      <div className="balloon-player mt-4">
         <iframe
           width={470}
           height={300}

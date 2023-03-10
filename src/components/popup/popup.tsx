@@ -43,7 +43,7 @@ function Popup({handleCloseButtonClick, location}: PopupProps) {
       />
       <div className="player-balloon">
         <span id="balloon_close" onClick={handleCloseButtonClick} />
-        <div className="balloon-head">
+        <div className="balloon-head mt-2">
           <a href="#">Дворовая камера: {location.address}</a>
         </div>
         {access ? <Player /> : ''}

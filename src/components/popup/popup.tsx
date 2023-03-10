@@ -57,15 +57,15 @@ function Popup({handleCloseButtonClick, location}: PopupProps) {
             : ''}
           {dialog2 ?
             <Form>
-              <Form.Group className="mb-3 mt-5" controlId="formBasicEmail">
+              <Form.Group className="mb-3 mt-5">
                 <Form.Label>Как вас зовут?</Form.Label>
                 <Form.Control type="text" placeholder="Введите имя" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3">
                 <Form.Label>Ваш телефон</Form.Label>
                 <Form.Control type="tel" placeholder="+7(900)987-65-43" />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Group className="mb-3">
                 <Form.Check type="checkbox" label="Согласен на обработку персональных данных" />
               </Form.Group>
               <Button variant="primary" type="button" onClick={() => { setDialog2(false); setDialog3(true);} }>
@@ -75,7 +75,7 @@ function Popup({handleCloseButtonClick, location}: PopupProps) {
             : ''}
           {dialog3 ?
             <Form>
-              <Form.Group className="mb-3 mt-5" controlId="formBasicEmail">
+              <Form.Group className="mb-3 mt-5">
                 <Form.Label>Введите код из смс</Form.Label>
                 <Form.Control type="text" placeholder="Ваш код" />
               </Form.Group>

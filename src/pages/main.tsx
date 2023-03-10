@@ -7,6 +7,25 @@ import { Location } from '../types/types';
 
 function Main() {
 
+  const myLocations: Location[] = [
+    {
+      id: 1,
+      address: 'ул. Ватутина, 28',
+      coords: [
+        61.781797,
+        34.329478
+      ]
+    },
+    {
+      id: 2,
+      address: 'ул. Ватутина, 26',
+      coords: [
+        61.782350,
+        34.329442
+      ]
+    }
+  ];
+
   const locations: Location[] = [
     {
       id: 3,
@@ -236,11 +255,20 @@ function Main() {
 
   const [location, setLocation] = useState<Location | undefined>(undefined);
   const [isActivePopup, setIsActivePopup] = useState(false);
+  const [instaAccess, setInstaAccess] = useState(false);
 
   const handleSelectedMarkerChange = ({latlng}: LeafletMouseEvent) => {
     const checkedLocation: Location | undefined = locations.find((it) => it.coords[0] === latlng.lat && it.coords[1] === latlng.lng);
     setLocation(checkedLocation as Location);
     setIsActivePopup(true);
+    setInstaAccess(false);
+  };
+
+  const handleNearestMarkerChange = ({latlng}: LeafletMouseEvent) => {
+    const checkedLocation: Location | undefined = myLocations.find((it) => it.coords[0] === latlng.lat && it.coords[1] === latlng.lng);
+    setLocation(checkedLocation as Location);
+    setIsActivePopup(true);
+    setInstaAccess(true);
   };
 
   const handleCloseButtonClick = () => {
@@ -339,12 +367,12 @@ function Main() {
                   </a>
                   <a href="#">Список</a>
                 </div>
-                {(isActivePopup && location) ? <Popup handleCloseButtonClick={handleCloseButtonClick} location={location}/> : ''}
+                {(isActivePopup && location) ? <Popup handleCloseButtonClick={handleCloseButtonClick} location={location} instaAccess={instaAccess}/> : ''}
               </div>
             </div>
             <div className="yandex-map">
               <div style={{ width: 1903, height: 800 }}>
-                <Map locations={locations} handleSelectedMarkerChange={handleSelectedMarkerChange} selectedLocationId={location?.id}/>
+                <Map locations={locations} myLocations={myLocations} handleSelectedMarkerChange={handleSelectedMarkerChange} handleNearestMarkerChange={handleNearestMarkerChange} selectedLocationId={location?.id}/>
               </div>
             </div>
           </div>

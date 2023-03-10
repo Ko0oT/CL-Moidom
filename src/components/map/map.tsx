@@ -18,11 +18,13 @@ const currentCustomIcon = L.icon({
 
 type MapProps = {
   locations?: Location[];
+  myLocations?:Location[];
   handleSelectedMarkerChange?: (evt: LeafletMouseEvent) => void;
+  handleNearestMarkerChange?: (evt: LeafletMouseEvent) => void;
   selectedLocationId?: number | undefined;
 }
 
-function Map({locations, handleSelectedMarkerChange, selectedLocationId}: MapProps): JSX.Element {
+function Map({locations, myLocations, handleSelectedMarkerChange, handleNearestMarkerChange, selectedLocationId}: MapProps): JSX.Element {
 
   // function SingleMarker() {
   //   return (
@@ -34,6 +36,24 @@ function Map({locations, handleSelectedMarkerChange, selectedLocationId}: MapPro
   type ClicableMarkerProps = {
     location: Location;
   }
+
+  function NearestClicableMarker({location}: ClicableMarkerProps) {
+    return (
+      <Marker
+        position={location.coords}
+        icon={currentCustomIcon}
+        eventHandlers={{
+          click: (evt: LeafletMouseEvent) => {
+            if (handleNearestMarkerChange) {
+              handleNearestMarkerChange(evt);
+            }
+          },
+        }}
+      >
+      </Marker>
+    );
+  }
+
 
   function ClicableMarker({location}: ClicableMarkerProps) {
     return (
@@ -53,12 +73,13 @@ function Map({locations, handleSelectedMarkerChange, selectedLocationId}: MapPro
   }
 
   return (
-    <MapContainer center={COMPANY_LOCATION} zoom={DEFAULT_ZOOM} scrollWheelZoom style={{height: '100%'}}>
+    <MapContainer center={myLocations ? myLocations[0].coords : COMPANY_LOCATION} zoom={DEFAULT_ZOOM} scrollWheelZoom style={{height: '100%'}}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
       {locations?.map((it) => <ClicableMarker location={it} key={it.id} />)}
+      {myLocations?.map((it) => <NearestClicableMarker location={it} key={it.id} />)}
     </MapContainer>
   );
 }

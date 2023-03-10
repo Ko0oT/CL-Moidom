@@ -9,10 +9,11 @@ import MySuccessShortModal from '../succes-short-modal/success-short-modal';
 type PopupProps = {
   handleCloseButtonClick: () => void;
   location: Location;
+  instaAccess: boolean;
 }
 
 
-function Popup({handleCloseButtonClick, location}: PopupProps) {
+function Popup({handleCloseButtonClick, location, instaAccess}: PopupProps) {
 
   const [access, setAccess] = useState(false);
   const [dialog1, setDialog1] = useState(false);
@@ -29,7 +30,12 @@ function Popup({handleCloseButtonClick, location}: PopupProps) {
     setDialog2(false);
     setDialog3(false);
     setIsNotFullAccess(false);
-  }, [location]);
+
+    if(instaAccess) {
+      setAccess(true);
+      setDialog1(false);
+    }
+  }, [location, instaAccess]);
 
   return (
     <>
